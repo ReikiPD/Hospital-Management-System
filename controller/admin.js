@@ -24,6 +24,16 @@ async function createAdmin(req, res) {
   }
 }
 
+async function getAllAdmin(req, res) {
+    try {
+      const result = await pool.query("SELECT * FROM Admin");
+      res.status(200).json(result.rows);
+    } catch (error) {
+      console.error("Database error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
 // Read an admin by ID
 async function getAdminById(req, res) {
   const { admin_id } = req.params;
@@ -84,6 +94,7 @@ async function deleteAdminById(req, res) {
 
 module.exports = {
   createAdmin,
+  getAllAdmin,
   getAdminById,
   updateAdminById,
   deleteAdminById,

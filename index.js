@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.post('/test', eventsRepo.testInput);
 app.post('/admin', adminController.createAdmin);
 app.get('/admin/:admin_id', adminController.getAdminById);
+app.get('/admin', adminController.getAllAdmin);
 app.put('/admin/:admin_id', adminController.updateAdminById);
 app.delete('/admin/:admin_id', adminController.deleteAdminById);
 
