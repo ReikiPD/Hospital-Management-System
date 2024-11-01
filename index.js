@@ -6,15 +6,23 @@ const dotenv = require("dotenv").config();
 const bodyParser = require("body-parser");
 const eventsRepo = require("./repositories/test");
 const adminController = require("./controller/admin"); 
+const doctorController = require("./controller/doctor");
 
 app.use(bodyParser.json());
 
 app.post('/test', eventsRepo.testInput);
+
 app.post('/admin', adminController.createAdmin);
 app.get('/admin/:admin_id', adminController.getAdminById);
 app.get('/admin', adminController.getAllAdmin);
 app.put('/admin/:admin_id', adminController.updateAdminById);
 app.delete('/admin/:admin_id', adminController.deleteAdminById);
+
+app.post('/doctor', doctorController.createDoctor);
+app.get('/doctor', doctorController.getAllDoctors);         // Route to get all doctors
+app.get('/doctor/:doctor_id', doctorController.getDoctorById);
+app.put('/doctor/:doctor_id', doctorController.updateDoctorById);
+app.delete('/doctor/:doctor_id', doctorController.deleteDoctorById);
 
 app.listen(port, () => {
   console.log("Server is running and listening on port", port);
